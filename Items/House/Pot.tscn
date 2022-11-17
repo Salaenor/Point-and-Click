@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Items/House/pot.png" type="Texture" id=1]
+[ext_resource path="res://Items/House/Pot.gd" type="Script" id=2]
+
+[node name="Pot" type="Node2D" groups=["Item"]]
+script = ExtResource( 2 )
+id = "Pot"
+
+[node name="Sprite" type="Sprite" parent="."]
+texture = ExtResource( 1 )

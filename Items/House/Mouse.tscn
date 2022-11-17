@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Items/House/Mouse.gd" type="Script" id=1]
+[ext_resource path="res://Items/House/mouse.png" type="Texture" id=2]
+
+[node name="Mouse" type="Node2D" groups=["Item"]]
+script = ExtResource( 1 )
+id = "Mouse"
+
+[node name="Sprite" type="Sprite" parent="."]
+texture = ExtResource( 2 )

@@ -1,0 +1,54 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://Items/House/Glass.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Features/inventory.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Rooms/House/bedroom.gd" type="Script" id=3]
+[ext_resource path="res://Features/Next.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Items/House/Picture.tscn" type="PackedScene" id=5]
+
+[sub_resource type="StreamTexture" id=1]
+flags = 4
+load_path = "res://.import/house - bedroom.png-895533c33afc1462173e01bc85c57827.stex"
+
+[node name="bedroom" type="Node2D" groups=["Saved"]]
+scale = Vector2( 0.574294, 0.507052 )
+script = ExtResource( 3 )
+
+[node name="bg" type="Sprite" parent="."]
+position = Vector2( 835.809, 531.504 )
+scale = Vector2( 1.74127, 1.96853 )
+texture = SubResource( 1 )
+
+[node name="Livingroom" parent="." instance=ExtResource( 4 )]
+position = Vector2( 100.994, 504.879 )
+next_scene_path = "res://Rooms/House/livingroom.tscn"
+
+[node name="Kitchen" parent="." instance=ExtResource( 4 )]
+position = Vector2( 1452.22, 516.712 )
+next_scene_path = "res://Rooms/House/kitchen.tscn"
+
+[node name="inventory" parent="." instance=ExtResource( 2 )]
+position = Vector2( 1532.32, 0 )
+
+[node name="Glass" parent="." instance=ExtResource( 1 )]
+position = Vector2( 1159.68, 700.125 )
+
+[node name="glassButton" type="Button" parent="Glass"]
+margin_left = -14.0
+margin_top = -14.0
+margin_right = 12.0
+margin_bottom = 20.0
+
+[node name="Picture" parent="." instance=ExtResource( 5 )]
+position = Vector2( 1126.6, 402.326 )
+
+[node name="pictureButton" type="Button" parent="Picture"]
+margin_left = -14.0
+margin_top = -14.0
+margin_right = 12.0
+margin_bottom = 20.0
+
+[connection signal="pressed" from="Glass/glassButton" to="inventory" method="_on_glassButton_pressed"]
+[connection signal="pressed" from="Glass/glassButton" to="Glass" method="_on_glassButton_pressed"]
+[connection signal="pressed" from="Picture/pictureButton" to="inventory" method="_on_pictureButton_pressed"]
+[connection signal="pressed" from="Picture/pictureButton" to="Picture" method="_on_pictureButton_pressed"]

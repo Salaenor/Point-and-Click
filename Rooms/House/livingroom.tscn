@@ -1,0 +1,96 @@
+[gd_scene load_steps=10 format=2]
+
+[ext_resource path="res://Items/House/Mouse.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Features/inventory.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Rooms/House/livingroom.gd" type="Script" id=3]
+[ext_resource path="res://Features/Next.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Backgrounds/House/house - livingroom.png" type="Texture" id=5]
+[ext_resource path="res://Rooms/House/knobButton.gd" type="Script" id=6]
+[ext_resource path="res://Items/House/Match.tscn" type="PackedScene" id=7]
+[ext_resource path="res://fonts/cmu-typewriter/Typewriter.tres" type="DynamicFont" id=8]
+[ext_resource path="res://Rooms/House/doorButton.gd" type="Script" id=9]
+
+[node name="livingroom" type="Node2D" groups=["Saved"]]
+scale = Vector2( 0.574294, 0.507052 )
+script = ExtResource( 3 )
+
+[node name="bg" type="Sprite" parent="."]
+position = Vector2( 759.193, 532.49 )
+scale = Vector2( 1.74127, 1.96853 )
+texture = ExtResource( 5 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Bedroom" parent="." instance=ExtResource( 4 )]
+position = Vector2( 1399.98, 506.851 )
+next_scene_path = "res://Rooms/House/bedroom.tscn"
+
+[node name="Kitchen" parent="." instance=ExtResource( 4 )]
+position = Vector2( 60.9443, 500.935 )
+next_scene_path = "res://Rooms/House/kitchen.tscn"
+
+[node name="Outside" parent="." instance=ExtResource( 4 )]
+position = Vector2( 1168.39, 554.184 )
+next_scene_path = "res://Rooms/House/kitchen.tscn"
+
+[node name="inventory" parent="." instance=ExtResource( 2 )]
+position = Vector2( 1532.32, 0 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="knobButton" type="Button" parent="."]
+margin_left = 625.115
+margin_top = 654.765
+margin_right = 797.115
+margin_bottom = 719.765
+script = ExtResource( 6 )
+
+[node name="Mouse" parent="." instance=ExtResource( 1 )]
+position = Vector2( 351.736, 885.511 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="mouseButton" type="Button" parent="Mouse"]
+margin_left = -16.0
+margin_right = 12.0
+margin_bottom = 20.0
+
+[node name="doorButton" type="Button" parent="."]
+margin_left = 1166.65
+margin_top = 552.212
+margin_right = 1278.65
+margin_bottom = 658.212
+script = ExtResource( 9 )
+
+[node name="doorLabel" type="Label" parent="doorButton"]
+margin_left = -264.65
+margin_top = 1.78833
+margin_right = -5.64978
+margin_bottom = 108.788
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_fonts/font = ExtResource( 8 )
+text = "The door is frozen shut"
+align = 2
+valign = 1
+autowrap = true
+
+[node name="Match" parent="." instance=ExtResource( 7 )]
+position = Vector2( 348.254, 875.65 )
+
+[node name="matchButton" type="Button" parent="Match"]
+margin_left = -20.8952
+margin_top = -11.8331
+margin_right = 28.1048
+margin_bottom = 31.1669
+
+[connection signal="pressed" from="knobButton" to="inventory" method="_on_knobButton_pressed"]
+[connection signal="pressed" from="knobButton" to="knobButton" method="_on_knobButton_pressed"]
+[connection signal="pressed" from="Mouse/mouseButton" to="inventory" method="_on_mouseButton_pressed"]
+[connection signal="pressed" from="Mouse/mouseButton" to="Mouse" method="_on_mouseButton_pressed"]
+[connection signal="pressed" from="doorButton" to="doorButton" method="_on_doorButton_pressed"]
+[connection signal="pressed" from="Match/matchButton" to="inventory" method="_on_matchButton_pressed"]
+[connection signal="pressed" from="Match/matchButton" to="Mouse" method="_on_couchButton_pressed"]
+[connection signal="pressed" from="Match/matchButton" to="Match" method="_on_matchButton_pressed"]

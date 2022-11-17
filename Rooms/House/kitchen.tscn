@@ -1,0 +1,87 @@
+[gd_scene load_steps=10 format=2]
+
+[ext_resource path="res://Features/inventory.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Rooms/House/kitchen.gd" type="Script" id=3]
+[ext_resource path="res://Features/Next.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Backgrounds/House/house - kitchen.png" type="Texture" id=5]
+[ext_resource path="res://Rooms/House/fridgeButton.gd" type="Script" id=6]
+[ext_resource path="res://Items/House/Leech.tscn" type="PackedScene" id=7]
+[ext_resource path="res://Rooms/House/stoveButton.gd" type="Script" id=8]
+[ext_resource path="res://Rooms/House/cupboardButton.gd" type="Script" id=9]
+[ext_resource path="res://Items/House/Pot.tscn" type="PackedScene" id=10]
+
+[node name="kitchen" type="Node2D" groups=["Saved"]]
+scale = Vector2( 0.574294, 0.507052 )
+script = ExtResource( 3 )
+
+[node name="bg" type="Sprite" parent="."]
+position = Vector2( 835.809, 531.504 )
+scale = Vector2( 1.74127, 1.96853 )
+texture = ExtResource( 5 )
+
+[node name="Bedroom" parent="." instance=ExtResource( 4 )]
+position = Vector2( 100.994, 504.879 )
+next_scene_path = "res://Rooms/House/bedroom.tscn"
+
+[node name="Livingroom" parent="." instance=ExtResource( 4 )]
+position = Vector2( 1290.28, 506.851 )
+next_scene_path = "res://Rooms/House/livingroom.tscn"
+
+[node name="inventory" parent="." instance=ExtResource( 2 )]
+position = Vector2( 1532.32, 0 )
+
+[node name="Leech" parent="." instance=ExtResource( 7 )]
+position = Vector2( 1340.78, 731.68 )
+
+[node name="leechButton" type="Button" parent="Leech"]
+margin_left = -21.0
+margin_top = -16.0
+margin_right = 12.0
+margin_bottom = 20.0
+
+[node name="Pot" parent="." instance=ExtResource( 10 )]
+position = Vector2( 604.22, 769.152 )
+
+[node name="potButton" type="Button" parent="Pot"]
+margin_left = -19.0
+margin_top = -8.0
+margin_right = 12.0
+margin_bottom = 20.0
+
+[node name="fridgeButton" type="Button" parent="."]
+margin_left = 1236.3
+margin_top = 721.82
+margin_right = 1269.3
+margin_bottom = 760.82
+script = ExtResource( 6 )
+
+[node name="cupboardButton" type="Button" parent="."]
+margin_left = 726.109
+margin_top = 741.541
+margin_right = 759.109
+margin_bottom = 780.541
+rect_pivot_offset = Vector2( -1027.35, -412.186 )
+script = ExtResource( 9 )
+
+[node name="stoveButton" type="Button" parent="."]
+margin_left = 320.393
+margin_top = 601.516
+margin_right = 405.393
+margin_bottom = 660.516
+script = ExtResource( 8 )
+
+[node name="Button" type="Button" parent="."]
+margin_left = 764.417
+margin_top = 451.63
+margin_right = 874.417
+margin_bottom = 599.63
+
+[connection signal="pressed" from="Pot/potButton" to="." method="_on_potButton_pressed"]
+[connection signal="pressed" from="Pot/potButton" to="inventory" method="_on_potButton_pressed"]
+[connection signal="pressed" from="fridgeButton" to="Leech" method="_on_fridgeButton_pressed"]
+[connection signal="pressed" from="fridgeButton" to="fridgeButton" method="_on_fridgeButton_pressed"]
+[connection signal="pressed" from="cupboardButton" to="inventory" method="_on_cupboardButton_pressed"]
+[connection signal="pressed" from="cupboardButton" to="Pot" method="_on_cupboardButton_pressed"]
+[connection signal="pressed" from="cupboardButton" to="cupboardButton" method="_on_cupboardButton_pressed"]
+[connection signal="pressed" from="stoveButton" to="inventory" method="_on_stoveButton_pressed"]
+[connection signal="pressed" from="stoveButton" to="stoveButton" method="_on_stoveButton_pressed"]
